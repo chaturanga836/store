@@ -13,6 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
+/*Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:api');
+})->middleware('auth:api');*/
+
+
+Route::get('test', 'CustomerController@index');
+
+Route::post('login', 'AuthenticateController@authenticate');
+
+Route::get('search-customer/{keyword?}','CustomerController@search');
+
+Route::get('search-items/{keyword?}','ItemController@search');
+
+Route::post('place-order','OrderController@placeOrder');
+
+Route::get('test-order','OrderController@testOrder');
