@@ -15,7 +15,7 @@ class OrderController extends Controller
 		$user=$request->input('userid');
 		$items=$request->input('cart');
 
-    
+
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
@@ -38,6 +38,8 @@ class OrderController extends Controller
 
 		$orderData=[];
 		foreach ($items as $item) {
+
+      var_dump($item);continue;
       $item['amount']=intval($item['amount']);
       $item['wsale']=floatval($item['wsale']);
 			array_push($orderData,[
