@@ -28,4 +28,4 @@ Route::get('search-items/{keyword?}','ItemController@search');
 
 Route::post('place-order','OrderController@placeOrder');
 
-Route::get('test-order','OrderController@testOrder');
+Route::post('test-order','OrderController@testOrder');
