@@ -38,8 +38,6 @@ class OrderController extends Controller
 
 		$orderData=[];
 		foreach ($items as $item) {
-
-      var_dump($item);continue;
       $item['amount']=intval($item['amount']);
       $item['wsale']=floatval($item['wsale']);
 			array_push($orderData,[
@@ -57,7 +55,7 @@ class OrderController extends Controller
 		try{
 		OrderData::insert($orderData);
 
-		return response()->json(['succsess'=>true,'message'=>'internal error'])
+		return response()->json(['succsess'=>true,'message'=>'Order Placed Success!'])
 				->header('Access-Control-Allow-Origin','*')
                 ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
 		}catch(Exception $ex){
