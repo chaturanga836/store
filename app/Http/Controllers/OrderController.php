@@ -19,8 +19,6 @@ class OrderController extends Controller
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
 		$orderHeadr->LocID=2;
-		$orderHeadr->IntRefNo=$orderHeadr->IntNo;
-		$orderHeadr->IntRefExt=$orderHeadr->IntNo;
 
 		if(!$orderHeadr->save()){
 			return response()->json(['succsess'=>false,'message'=>'internal error'])
@@ -45,7 +43,9 @@ class OrderController extends Controller
 		//DB::table('orderdata')->insert($orderData);
 		try{
 		OrderData::insert($orderData);
-
+    $orderHeadr->IntRefNo=$orderHeadr->IntNo;
+    $orderHeadr->IntRefExt=$orderHeadr->IntNo;
+    $orderHeadr->save();
 		return response()->json(['succsess'=>true,'message'=>'internal error'])
 				->header('Access-Control-Allow-Origin','*')
                 ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
