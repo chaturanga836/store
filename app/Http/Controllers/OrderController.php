@@ -13,7 +13,7 @@ class OrderController extends Controller
 
 		$customer=$request->input('customerid');
 		$user=$request->input('userid');
-		$items=$request->input('items');
+		$items=$request->input('cart');
 
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
