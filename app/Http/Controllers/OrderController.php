@@ -15,6 +15,7 @@ class OrderController extends Controller
 		$user=$request->input('userid');
 		$items=$request->input('cart');
 
+    var_dump($items);exit();
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
@@ -26,6 +27,14 @@ class OrderController extends Controller
                         ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
 		}
 
+    $orderHeadr->IntRefNo=$orderHeadr->IntNo;
+    $orderHeadr->IntRefExt=$orderHeadr->IntNo;
+
+    if(!$orderHeadr->save()){
+			return response()->json(['succsess'=>false,'message'=>'internal error'])
+			 ->header('Access-Control-Allow-Origin','*')
+                        ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
+		}
 
 		$orderData=[];
 		foreach ($items as $item) {
@@ -43,9 +52,7 @@ class OrderController extends Controller
 		//DB::table('orderdata')->insert($orderData);
 		try{
 		OrderData::insert($orderData);
-    $orderHeadr->IntRefNo=$orderHeadr->IntNo;
-    $orderHeadr->IntRefExt=$orderHeadr->IntNo;
-    $orderHeadr->save();
+
 		return response()->json(['succsess'=>true,'message'=>'internal error'])
 				->header('Access-Control-Allow-Origin','*')
                 ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE');
