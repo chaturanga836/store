@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemHistory extends Model
 {
     //
-    protected $table = 'Itemhistory';
+    protected $table = 'ItemHistory';
 
     public $primaryKey='ID';
     public $timestamps = false;
