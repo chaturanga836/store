@@ -20,7 +20,7 @@ class OrderController extends Controller
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
     $orderHeadr->TranDate=date("Y-m-d");
-    $orderHeadr->DocNo=2;
+    $orderHeadr->DocNo=25;
 		$orderHeadr->LocID=2;
 
 		if(!$orderHeadr->save()){
