@@ -15,7 +15,7 @@ class OrderController extends Controller
 		$user=$request->input('userid');
 		$items=$request->input('cart');
 
-    var_dump($items);exit();
+    
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
@@ -38,6 +38,8 @@ class OrderController extends Controller
 
 		$orderData=[];
 		foreach ($items as $item) {
+      $item['amount']=intval($item['amount']);
+      $item['wsale']=floatval($item['wsale']);
 			array_push($orderData,[
 					'IntNo'=>$orderHeadr->IntNo,
 					'ExtNo'=>$orderHeadr->IntNo,
@@ -46,7 +48,7 @@ class OrderController extends Controller
 					'Price'=>$item['wsale'],
 					'Value'=>$item['amount']*$item['wsale'],
 					'Name'=>$item['name'],
-					'FOCQty'=>isset($item['freeqty'])?$item['freeqty']:0,
+					'FOCQty'=>isset($item['freeqty'])?intval($item['freeqty']):0,
 				]);
 		}
 		//DB::table('orderdata')->insert($orderData);
