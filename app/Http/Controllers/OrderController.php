@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\OrderData;
+use App\OrderHeader;
 
 class OrderController extends Controller
 {

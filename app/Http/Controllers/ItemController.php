@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ItemHistory;
+use App\Item;
 
 class ItemController extends Controller
 {
