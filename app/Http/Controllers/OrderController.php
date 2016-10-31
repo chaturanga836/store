@@ -14,11 +14,13 @@ class OrderController extends Controller
 		$customer=$request->input('customerid');
 		$user=$request->input('userid');
 		$items=$request->input('cart');
-
+    $mydate=getdate(date("U"));
 
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
+    $orderHeadr->TranDate=date("Y-m-d");
+    $orderHeadr->DocNo=2;
 		$orderHeadr->LocID=2;
 
 		if(!$orderHeadr->save()){
