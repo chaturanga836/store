@@ -18,14 +18,14 @@ class ItemController extends Controller
 		}
 		$names=explode(" ",$keyword);
 
-		$items=Item::where('Name','LIKE','%'.$keyword.'%')
-		->orWhere('ProductID','LIKE','%'.$keyword.'%')
+		$items=Item::where('Name','LIKE',$keyword.'%')
+		->orWhere('ProductID','LIKE',$keyword.'%')
 		->orderBy('Name')
 		->take(20)
 		->get();
 
 		foreach ($items as $item) {
-		
+
 			array_push($products,array(
 				 'id'=>$item->ProductID,
 				 'Bonus'=>$item->Bonus,

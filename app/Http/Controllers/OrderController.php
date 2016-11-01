@@ -19,6 +19,7 @@ class OrderController extends Controller
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
 		$orderHeadr->CustomerID=$customer;
+    $orderHeadr->EmployeeID=$user;
     $orderHeadr->TranDate=date("Y-m-d");
     $orderHeadr->DocNo=25;
 		$orderHeadr->LocID=2;
@@ -31,6 +32,7 @@ class OrderController extends Controller
 
     $orderHeadr->IntRefNo=$orderHeadr->IntNo;
     $orderHeadr->IntRefExt=$orderHeadr->IntNo;
+    $orderHeadr->ExtNo=$orderHeadr->IntNo;
 
     if(!$orderHeadr->save()){
 			return response()->json(['succsess'=>false,'message'=>'internal error'])
