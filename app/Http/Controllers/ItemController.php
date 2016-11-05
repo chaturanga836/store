@@ -46,7 +46,20 @@ class ItemController extends Controller
       ->take(20)
       ->skip((20*$page)-20)
       ->get();
+      $products=[];
 
-      return response()->json(['items'=>$items]);
+      foreach ($items as $item) {
+
+  			array_push($products,array(
+  				 'id'=>$item->ProductID,
+  				 'Bonus'=>$item->Bonus,
+  				 'wsale'=>$item->WSalePrice,
+  				 'name'=>$item->Name,
+  				 'qty'=>ItemHistory::getQty($item->ProductID),
+  				 'qtyInHand'=>$item->qtyInHand
+  				));
+  		}
+
+      return response()->json(['items'=>$products]);
     }
 }
