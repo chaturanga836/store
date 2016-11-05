@@ -16,7 +16,7 @@ class ItemHistory extends Model
 
     public static function getQty($id){
 
-    	$qty=ItemHistory::having('productId',$id)
+    	$qty=ItemHistory::where('productId',$id)
       ->groupBy('productId')
       ->sum('quantity');
 
