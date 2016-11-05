@@ -41,12 +41,12 @@ class ItemController extends Controller
 		 //->withCallback($request->input('callback'));
     }
 
-    public function getall($page){
+    public function getall(Request $request ,$page){
       $items=Item::orderBy('Name')
       ->take(20)
       ->skip((20*$page)-20)
       ->get();
 
-      return response()->json(['items'=>$items);
+      return response()->json(['items'=>$items]);
     }
 }
