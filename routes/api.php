@@ -29,3 +29,5 @@ Route::get('search-items/{keyword?}','ItemController@search');
 Route::post('place-order','OrderController@placeOrder');
 
 Route::post('test-order','OrderController@testOrder');
+
+Route::get('get-all-items/{page}','ItemController@getall');

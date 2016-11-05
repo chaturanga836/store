@@ -37,7 +37,16 @@ class ItemController extends Controller
 		}
 
 
-		return response()->json(['items'=>$products])
-		 ->withCallback($request->input('callback'));
+		return response()->json(['items'=>$products]);
+		 //->withCallback($request->input('callback'));
+    }
+
+    public function getall($page){
+      $items=Item::orderBy('Name')
+      ->take(20)
+      ->skip((20*$page)-20)
+      ->get();
+
+      return response()->json(['items'=>$items);
     }
 }
