@@ -31,3 +31,5 @@ Route::post('place-order','OrderController@placeOrder');
 Route::post('test-order','OrderController@testOrder');
 
 Route::get('get-all-items/{page}','ItemController@getall');
+
+Route::get('today-report/{userid}','ReportsController@todayReports');
