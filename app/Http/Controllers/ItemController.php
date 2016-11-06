@@ -43,10 +43,10 @@ class ItemController extends Controller
 
     public function getall(Request $request ,$page){
       $items=Item::orderBy('Name')
-      ->take(100)
-      ->skip((100*$page)-100)
+      ->take(20)
+      ->skip((20*$page)-20)
       ->get();
-      
+
       $products=[];
 
       foreach ($items as $item) {
