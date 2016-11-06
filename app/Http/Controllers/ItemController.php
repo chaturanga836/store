@@ -46,6 +46,7 @@ class ItemController extends Controller
       ->take(100)
       ->skip((100*$page)-100)
       ->get();
+      
       $products=[];
 
       foreach ($items as $item) {
