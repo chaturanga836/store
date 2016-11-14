@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class OrderHeader extends Model
 {
@@ -14,7 +15,7 @@ class OrderHeader extends Model
 
 
     public static function getTodayOrders($empid){
-      $orders=self::where('SysUsID',$empid)->where('TranDate',date('Y-m-d'))->get();
+      $orders=self::where('SysUsID',$empid)->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))->get();
 
       return $orders;
     }
@@ -24,7 +25,14 @@ class OrderHeader extends Model
       $date= new DateTime(date('Y-m-d'));
       $y=$date->format("Y");
       $month=$date->format("m");
-      $orders=self::where('SysUsID',$empid)->whereBetween('TranDate',["{$y}-{$month}-1","{$y}-{$month}-31"])->get();
+      $monthf=strtotime("{$y}-{$month}-1");
+      $monthe="{$y}-{$month}-31";
+
+      $orders=self::where('SysUsID',$empid)
+      ->where('TranDate','>=',$monthf)
+      ->where('TranDate','<=',$monthe)
+      ->get();
+
       return $orders;
     }
 }
