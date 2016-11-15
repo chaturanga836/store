@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
-
+use DateTime;
 class OrderHeader extends Model
 {
     //
@@ -22,7 +22,7 @@ class OrderHeader extends Model
 
     public static function getMonthsOrders($empid){
 
-      $date= new DateTime(date('Y-m-d'));
+      $date= new DateTime();
       $y=$date->format("Y");
       $month=$date->format("m");
       $monthf=strtotime("{$y}-{$month}-1");

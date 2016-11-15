@@ -69,7 +69,7 @@ class ReportsController extends Controller{
         'succsess'=>true,
         'totalcustomers'=>$totalCustomers,
         'totalprice'=>$totalPrice,
-        '$totalProducts'=>$totalProducts,
+        'totalProducts'=>$totalProducts,
         'history'=>$thisMonthHistory
       ])
        ->header('Access-Control-Allow-Origin','*')
