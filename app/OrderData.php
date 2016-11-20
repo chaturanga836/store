@@ -19,7 +19,7 @@ class OrderData extends Model
     }
 
     public static function getTotalPrice($orderid){
-      $totlaitem=self::where('IntNo',$orderid)->sum('Price');
+      $totlaitem=self::where('IntNo',$orderid)->sum('Value');
 
       return $totlaitem;
     }
