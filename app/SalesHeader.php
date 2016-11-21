@@ -32,6 +32,7 @@ class SalesHeader extends Model
    ->where('TranDate','<=',$monthe)
    ->sum('Amount');
 
+   var_dump($sales1);exit();
    return ($sales1);
 
  }
