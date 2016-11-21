@@ -32,7 +32,7 @@ class SalesHeader extends Model
    ->where('TranDate','<=',$monthe)
    ->sum('Amount');
 
-   return ($sales1-$sales2);
+   return ($sales1);
 
  }
 
@@ -47,6 +47,6 @@ class SalesHeader extends Model
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
    ->sum('Amount');
 
-   return ($sales1-$sales2);
+   return ($sales1);
  }
 }
