@@ -7,7 +7,7 @@ use DB;
 use DateTime;
 class SalesHeader extends Model
 {
-  rotected $table = 'OrderHeader';
+  protected $table = 'OrderHeader';
 
  public $primaryKey='IntNo';
  public $timestamps = false;
