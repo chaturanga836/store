@@ -32,7 +32,7 @@ class ReportsController extends Controller{
       //$totalPrice+=$b;
     }
 
-    $totalPrice=SalesHeader::getTodayTotal($empid);
+    $totalPrice=SalesHeader::getTodayTotalprice($empid);
 
     return response()->json([
       'succsess'=>true,

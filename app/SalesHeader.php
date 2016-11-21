@@ -20,13 +20,14 @@ class SalesHeader extends Model
    $monthf=strtotime("{$y}-{$month}-1");
    $monthe="{$y}-{$month}-31";
 
+    var_dump($monthf);exit();
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
-   //->where('TranDate','<=',$monthe)
+   ->where('TranDate','<=',$monthe)
    ->sum('Amount');
 
-   var_dump($sales1);exit();
+
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where('TranDate','>=',$monthf)
@@ -38,7 +39,7 @@ class SalesHeader extends Model
 
  }
 
- public static function getTodayTotal($empid){
+ public static function getTodayTotalprice($empid){
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
