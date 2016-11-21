@@ -17,10 +17,10 @@ class SalesHeader extends Model
    $date= new DateTime();
    $y=$date->format("Y");
    $month=$date->format("m");
-   $monthf=strtotime("{$y}-{$month}-1");
+   $monthf="{$y}-{$month}-1";
    $monthe="{$y}-{$month}-31";
 
-    var_dump($monthf);exit();
+    
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
