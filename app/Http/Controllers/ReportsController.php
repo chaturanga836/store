@@ -27,8 +27,10 @@ class ReportsController extends Controller{
       ]);
       $totalCustomers+=1;
       $totalProducts+=$a;
-      $totalPrice+=$b;
+      //$totalPrice+=$b;
     }
+
+    $totalPrice=SalesHeader::getTodayTotal($empid);
 
     return response()->json([
       'succsess'=>true,
@@ -62,8 +64,10 @@ class ReportsController extends Controller{
       ]);
       $totalCustomers+=1;
       $totalProducts+=$a;
-      $totalPrice+=$b;
+      //$totalPrice+=$b;
     }
+
+    $totalPrice=SalesHeader::getMonthTotalPrice($empid);
 
       return response()->json([
         'succsess'=>true,
