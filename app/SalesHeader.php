@@ -23,9 +23,10 @@ class SalesHeader extends Model
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
-   ->where('TranDate','<=',$monthe)
+   //->where('TranDate','<=',$monthe)
    ->sum('Amount');
 
+   var_dump($sales1);exit();
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where('TranDate','>=',$monthf)
