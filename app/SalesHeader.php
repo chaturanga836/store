@@ -7,7 +7,7 @@ use DB;
 use DateTime;
 class SalesHeader extends Model
 {
-  protected $table = 'OrderHeader';
+  protected $table = 'SalesHeader';
 
  public $primaryKey='IntNo';
  public $timestamps = false;
@@ -32,8 +32,8 @@ class SalesHeader extends Model
    ->where('TranDate','<=',$monthe)
    ->sum('Amount');
 
-   var_dump($sales1);exit();
-   return ($sales1);
+
+   return ($sales1-$sales2);
 
  }
 
@@ -48,6 +48,6 @@ class SalesHeader extends Model
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
    ->sum('Amount');
 
-   return ($sales1);
+   return ($sales1-$sales2);
  }
 }
