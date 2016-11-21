@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\OrderData;
 use App\OrderHeader;
 use App\Customer;
+use App\SalesHeader;
+
 class ReportsController extends Controller{
 
   public function todayReports($empid){
