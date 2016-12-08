@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\OrderData;
 use App\OrderHeader;
 use App\Customer;
+use App\SalesHeader;
+
 class ReportsController extends Controller{
 
   public function todayReports($empid){
@@ -27,8 +29,10 @@ class ReportsController extends Controller{
       ]);
       $totalCustomers+=1;
       $totalProducts+=$a;
-      $totalPrice+=$b;
+      //$totalPrice+=$b;
     }
+
+    $totalPrice=SalesHeader::getTodayTotalprice($empid);
 
     return response()->json([
       'succsess'=>true,
@@ -62,8 +66,10 @@ class ReportsController extends Controller{
       ]);
       $totalCustomers+=1;
       $totalProducts+=$a;
-      $totalPrice+=$b;
+      //$totalPrice+=$b;
     }
+
+    $totalPrice=SalesHeader::getMonthTotalPrice($empid);
 
       return response()->json([
         'succsess'=>true,
