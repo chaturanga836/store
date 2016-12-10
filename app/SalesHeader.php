@@ -25,30 +25,34 @@ class SalesHeader extends Model
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->sum('Amount');
+   ->select(DB::raw('(Amount*(100-Discount))/100 AS tsales'))
+   ->sum('tsales');
 
 
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->sum(DB::raw('Amount-((Amount*Discount)/100)'));
+   ->select(DB::raw('(Amount*(100-Discount))/100 AS tsales'))
+   ->sum('tsales');
 
 
    return ($sales1-$sales2);
 
  }
-
+//a-(a*b/100)=> a(100-b)/100
  public static function getTodayTotalprice($empid){
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-   ->sum('Amount');
+   ->select(DB::raw('(Amount*(100-Discount))/100 AS tsales'))
+   ->sum('tsales');
 
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-   ->sum(DB::raw('Amount-((Amount*Discount)/100)'));
+   ->select(DB::raw('(Amount*(100-Discount))/100 AS tsales'))
+   ->sum('tsales');
 
    return ($sales1-$sales2);
  }
