@@ -69,7 +69,7 @@ class SalesHeader extends Model
    $date= new DateTime();
    $y=$date->format("Y");
    $month=$date->format("m");
-   $monthf=strtotime("{$y}-{$month}-1");
+   $monthf="{$y}-{$month}-1";
    $monthe="{$y}-{$month}-31";
 
    $order1=self::where('EmployeeID',$empid)
@@ -78,7 +78,7 @@ class SalesHeader extends Model
    ->where('TranDate','<=',$monthe)
    ->count('DocNo');
 
-   
+
    return $order1;
  }
 
