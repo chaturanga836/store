@@ -25,15 +25,16 @@ class SalesHeader extends Model
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->sum(DB::raw('(Amount*(100-Discount))/100'));
+   ->select(DB::raw('sum(((100-Discount)*Amount)/100) AS tsales'))
+   ->get();
 
 
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->sum(DB::raw('(Amount*(100-Discount))/100'));
-
+   ->select(DB::raw('sum(((100-Discount)*Amount)/100) AS tsales'))
+   ->get();
 
    return ($sales1-$sales2);
 
@@ -43,13 +44,14 @@ class SalesHeader extends Model
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-   ->sum(DB::raw('(Amount*(100-Discount))/100'));
+   ->select(DB::raw('sum(((100-Discount)*Amount)/100) AS tsales'))
+   ->get();
 
    $sales2=self::where('EmployeeID',$empid)
    ->where('DocNo',4)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-  ->sum(DB::raw('(Amount*(100-Discount))/100'));
-
+   ->select(DB::raw('sum(((100-Discount)*Amount)/100) AS tsales'))
+   ->get();
    return ($sales1-$sales2);
  }
 
