@@ -15,7 +15,9 @@ class OrderHeader extends Model
 
 
     public static function getTodayOrders($empid){
-      $orders=self::where('SysUsID',$empid)->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))->get();
+      $orders=self::where('SysUsID',$empid)
+      ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
+      ->get();
 
       return $orders;
     }
