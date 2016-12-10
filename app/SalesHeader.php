@@ -38,7 +38,7 @@ class SalesHeader extends Model
    return ($sales1-$sales2);
 
  }
-//a-(a*b/100)=> a(100-b)/100
+
  public static function getTodayTotalprice($empid){
    $sales1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
@@ -55,7 +55,7 @@ class SalesHeader extends Model
 
  public static function getTodayOrders($empid){
 
-   $order1=self::where('SysUsID',$empid)
+   $order1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
    ->count();
@@ -72,7 +72,7 @@ class SalesHeader extends Model
    $monthf=strtotime("{$y}-{$month}-1");
    $monthe="{$y}-{$month}-31";
 
-   $order1=self::where('SysUsID',$empid)
+   $order1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
