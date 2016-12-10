@@ -61,7 +61,7 @@ class SalesHeader extends Model
    ->count();
 
 
-   return ($order1);
+   return $order1;
  }
 
  public static function getMonthsOrders($empid){
@@ -79,7 +79,7 @@ class SalesHeader extends Model
    ->count();
 
 
-   return ($order1);
+   return $order1;
  }
 
 }

@@ -17,21 +17,7 @@ class ReportsController extends Controller{
     $totalProducts=0;
     $totalPrice=0;
 
-  $orders=SalesHeader::getTodayOrders($empid);
-
-    // foreach ($orders as $order) {
-    //   $a=OrderData::getTotalproduct($order->IntNo);
-    //   $b=OrderData::getTotalPrice($order->IntNo);
-    //   array_push($todayHistory,[
-    //     'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
-    //     'TotalProducst'=>$a,
-    //     'Totalprice'=>$b,
-    //   ]);
-    //   $totalCustomers+=1;
-    //   $totalProducts+=$a;
-    //   //$totalPrice+=$b;
-    // }
-
+    $orders=SalesHeader::getTodayOrders($empid);
     $totalPrice=SalesHeader::getTodayTotalprice($empid);
 
     return response()->json([
@@ -47,6 +33,7 @@ class ReportsController extends Controller{
   }
 
   public function thisMonthReport($empid){
+    
     $thisMonthHistory=[];
 
     $totalCustomers=0;
@@ -54,21 +41,6 @@ class ReportsController extends Controller{
     $totalPrice=0;
 
     $orders=SalesHeader::getMonthsOrders($empid);
-
-    // foreach ($orders as $order) {
-    //
-    //   $a=OrderData::getTotalproduct($order->IntNo);
-    //   $b=OrderData::getTotalPrice($order->IntNo);
-    //   array_push($thisMonthHistory,[
-    //     'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
-    //     'TotalProducst'=>$a,
-    //     'Totalprice'=>$b,
-    //   ]);
-    //   $totalCustomers+=1;
-    //   $totalProducts+=$a;
-    //   //$totalPrice+=$b;
-    // }
-
     $totalPrice=SalesHeader::getMonthTotalPrice($empid);
 
       return response()->json([
