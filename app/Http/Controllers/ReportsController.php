@@ -17,26 +17,26 @@ class ReportsController extends Controller{
     $totalProducts=0;
     $totalPrice=0;
 
-  $orders=OrderHeader::getTodayOrders($empid);
+  $orders=SalesHeader::getTodayOrders($empid);
 
-    foreach ($orders as $order) {
-      $a=OrderData::getTotalproduct($order->IntNo);
-      $b=OrderData::getTotalPrice($order->IntNo);
-      array_push($todayHistory,[
-        'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
-        'TotalProducst'=>$a,
-        'Totalprice'=>$b,
-      ]);
-      $totalCustomers+=1;
-      $totalProducts+=$a;
-      //$totalPrice+=$b;
-    }
+    // foreach ($orders as $order) {
+    //   $a=OrderData::getTotalproduct($order->IntNo);
+    //   $b=OrderData::getTotalPrice($order->IntNo);
+    //   array_push($todayHistory,[
+    //     'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
+    //     'TotalProducst'=>$a,
+    //     'Totalprice'=>$b,
+    //   ]);
+    //   $totalCustomers+=1;
+    //   $totalProducts+=$a;
+    //   //$totalPrice+=$b;
+    // }
 
     $totalPrice=SalesHeader::getTodayTotalprice($empid);
 
     return response()->json([
       'succsess'=>true,
-      'totalcustomers'=>$totalCustomers,
+      'totalcustomers'=>$orders,
       'totalprice'=>$totalPrice,
       'totalProducts'=>$totalProducts,
       'history'=>$todayHistory
@@ -53,27 +53,27 @@ class ReportsController extends Controller{
     $totalProducts=0;
     $totalPrice=0;
 
-    $orders=OrderHeader::getMonthsOrders($empid);
+    $orders=SalesHeader::getMonthsOrders($empid);
 
-    foreach ($orders as $order) {
-
-      $a=OrderData::getTotalproduct($order->IntNo);
-      $b=OrderData::getTotalPrice($order->IntNo);
-      array_push($thisMonthHistory,[
-        'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
-        'TotalProducst'=>$a,
-        'Totalprice'=>$b,
-      ]);
-      $totalCustomers+=1;
-      $totalProducts+=$a;
-      //$totalPrice+=$b;
-    }
+    // foreach ($orders as $order) {
+    //
+    //   $a=OrderData::getTotalproduct($order->IntNo);
+    //   $b=OrderData::getTotalPrice($order->IntNo);
+    //   array_push($thisMonthHistory,[
+    //     'Customer'=>Customer::where('CustomerID',sprintf("%04d",$order->CustomerID))->first(),
+    //     'TotalProducst'=>$a,
+    //     'Totalprice'=>$b,
+    //   ]);
+    //   $totalCustomers+=1;
+    //   $totalProducts+=$a;
+    //   //$totalPrice+=$b;
+    // }
 
     $totalPrice=SalesHeader::getMonthTotalPrice($empid);
 
       return response()->json([
         'succsess'=>true,
-        'totalcustomers'=>$totalCustomers,
+        'totalcustomers'=>$orders,
         'totalprice'=>$totalPrice,
         'totalProducts'=>$totalProducts,
         'history'=>$thisMonthHistory
