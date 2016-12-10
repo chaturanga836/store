@@ -60,12 +60,8 @@ class SalesHeader extends Model
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
    ->count();
 
-   $order2=self::where('SysUsID',$empid)
-   ->where('DocNo',4)
-   ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-   ->count();
 
-   return ($order1-$order2);
+   return ($order1);
  }
 
  public static function getMonthsOrders($empid){
@@ -82,13 +78,8 @@ class SalesHeader extends Model
    ->where('TranDate','<=',$monthe)
    ->count();
 
-   $order2=self::where('SysUsID',$empid)
-   ->where('DocNo',4)
-   ->where('TranDate','>=',$monthf)
-   ->where('TranDate','<=',$monthe)
-   ->count();
 
-   return ($order1-$order2);
+   return ($order1);
  }
 
 }
