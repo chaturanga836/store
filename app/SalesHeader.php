@@ -76,9 +76,13 @@ class SalesHeader extends Model
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->toSql();
+   ->count('DocNo');
 
-   dd($order1);exit();
+   //dd($order1);exit();
+   DB::listen(function($sql) {
+    var_dump($sql);
+    exit();
+    });
 
    return $order1;
  }
