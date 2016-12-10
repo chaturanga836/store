@@ -58,7 +58,7 @@ class SalesHeader extends Model
    $order1=self::where('EmployeeID',$empid)
    ->where('DocNo',3)
    ->where(DB::raw('DATE(TranDate)'),DB::raw('CURDATE()'))
-   ->count();
+   ->count('DocNo');
 
 
    return $order1;
@@ -76,8 +76,9 @@ class SalesHeader extends Model
    ->where('DocNo',3)
    ->where('TranDate','>=',$monthf)
    ->where('TranDate','<=',$monthe)
-   ->count();
+   ->count('DocNo');
 
+   var_dump($order1);exit();
 
    return $order1;
  }
