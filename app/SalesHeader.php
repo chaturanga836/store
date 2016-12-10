@@ -36,6 +36,7 @@ class SalesHeader extends Model
    ->select(DB::raw('sum(((100-Discount)*Amount)/100) AS tsales'))
    ->get();
 
+   var_dump($sales2);exit();
    return ($sales1-$sales2);
 
  }
