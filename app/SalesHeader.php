@@ -79,10 +79,7 @@ class SalesHeader extends Model
    ->count('DocNo');
 
    //dd($order1);exit();
-   DB::listen(function($sql) {
-    var_dump($sql);
-    exit();
-    });
+  
 
    return $order1;
  }
