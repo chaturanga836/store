@@ -29,7 +29,7 @@ class ItemController extends Controller
 			array_push($products,array(
 				 'id'=>$item->ProductID,
 				 'Bonus'=>$item->Bonus,
-				 'wsale'=>$item->WSalePrice,
+				 'wsale'=>$item->RetailPrice,
 				 'name'=>$item->Name,
 				 'qty'=>ItemHistory::getQty($item->ProductID),
 				 'qtyInHand'=>$item->qtyInHand
