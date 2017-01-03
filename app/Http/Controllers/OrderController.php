@@ -18,7 +18,7 @@ class OrderController extends Controller
 
 		$orderHeadr=new OrderHeader;
 		$orderHeadr->SysUsID=$user;
-		$orderHeadr->CustomerID=ltrim($customer,'0');
+		$orderHeadr->CustomerID=$customer;
     $orderHeadr->EmployeeID=$user;
     $orderHeadr->TranDate=date("Y-m-d h:i:s");
     $orderHeadr->DocNo=25;
